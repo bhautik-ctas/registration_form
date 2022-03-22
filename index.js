@@ -7,9 +7,7 @@ import connectDb from './dbConnect/db.js'
 
 app.use(express.json())
 app.use('/',route)
-app.get('/',(req,res)=>{
-    res.send({name:'raj',age:22})
-})
+
 connectDb(process.env.url)
 
 
