@@ -1,10 +1,13 @@
-import express from "express";
-const route = express.Router()
-import studentApi from '../controller/firstController.js'
+const route = require('express').Router();
+const api = require('../controller/firstController.js');
+const middleware = require('../middleware/middleware.js')
 
-route.get('/read',studentApi.readData)
-route.post('/create',studentApi.createData)
-route.patch('/update/:id',studentApi.updateData)
-route.delete('/delete/:id',studentApi.deleteData)
+//  public route
+route.post('/create', api.registrationData)
+route.post('/login', api.loginData)
+route.put('/update/:id', middleware, api.changePassword)
 
-export default route
+
+//  private route
+
+module.exports = route;

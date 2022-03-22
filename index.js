@@ -1,16 +1,18 @@
-import dotenv from 'dotenv'
-dotenv.config()
-import express from 'express'
-const app = express()
-import route from './router/route.js'
-import connectDb from './dbConnect/db.js'
+const express = require('express');
+const dotenv = require('dotenv');
+dotenv.config();
+const app = express();
+const route = require('./router/route.js')
+const connectDB = require('./dbConnect/db.js')
+const route2 = require('./router/productrouter.js')
+const port = process.env.port;
+const url = process.env.url;
 
-app.use(express.json())
-app.use('/',route)
+app.use(express.json());
+app.use('/', route);
+app.use('/api', route2);
+connectDB(url);
 
-connectDb(process.env.url)
-
-
-app.listen(process.env.port,()=>{
-    console.log("server is running");
+app.listen(port, () => {
+    console.log('server is running');
 })
